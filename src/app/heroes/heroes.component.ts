@@ -10,6 +10,8 @@ import { MessageService } from '../message.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+
+  // TODO Remove this unused property
   selectedHero: Hero;
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
@@ -23,6 +25,7 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
   }
 
+  // TODO Remove this unused event
   onSelect(hero: Hero): void {
     if (hero === this.selectedHero) {
       this.selectedHero = null;
