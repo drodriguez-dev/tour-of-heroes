@@ -4,12 +4,13 @@
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
+    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
   </li>
 </ul>
 <h3>Add a Hero</h3>
 <div>
   <label>Hero name:
-    <input #heroName (keyup.enter)="add(heroName.value); heroName.value=''"/>
+    <input #heroName (keyup.enter)="add(heroName.value); heroName.value=''" />
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="add(heroName.value); heroName.value=''">add</button>
