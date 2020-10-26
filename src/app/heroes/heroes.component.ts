@@ -11,9 +11,6 @@ import { MessageService } from '../message.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
-  // TODO Remove this unused property
-  selectedHero: Hero;
-
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -23,15 +20,5 @@ export class HeroesComponent implements OnInit {
   loadHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
-  }
-
-  // TODO Remove this unused event
-  onSelect(hero: Hero): void {
-    if (hero === this.selectedHero) {
-      this.selectedHero = null;
-    } else {
-      this.selectedHero = hero;
-      this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-    }
   }
 }
