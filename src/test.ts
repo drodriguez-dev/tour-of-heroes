@@ -21,4 +21,4 @@ getTestBed().initTestEnvironment(
 );
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
-let mappedKeys = context.keys().map(context);
+const mappedKeys = context.keys().map(context);
