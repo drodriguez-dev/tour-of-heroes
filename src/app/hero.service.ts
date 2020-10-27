@@ -107,7 +107,7 @@ export class HeroService {
 
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
-  
+
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap(_ => {
         const elapsed = new Date().getTime() - start;
@@ -115,5 +115,18 @@ export class HeroService {
       }),
       catchError(this.handleError<Hero>('deleteHero'))
     );
+  }
+
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) { return of([]); }
+
+    const url = `${this.heroesUrl}/?name=${term}`;
+    return this.http.get<Hero[]>(url)
+      .pipe(
+        tap(h => {
+          this.log(h.length ? `found heroes matching "${term}"` : `no heroes matching "${term}"`);
+        }),
+        catchError(this.handleError<Hero[]>('searchHeroes', []))
+      );
   }
 }
